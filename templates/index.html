@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Quiz Flying Chess</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>PDF Quiz Flying Chess</h1>
+        
+        <!-- Step 1: Upload PDF -->
+        <div id="step1" class="step active">
+            <h2>Step 1: Upload PDF</h2>
+            <input type="file" id="pdfUpload" accept=".pdf">
+            <button id="uploadBtn">Upload PDF</button>
+            <div id="uploadStatus"></div>
+        </div>
+        
+        <!-- Step 2: Generate Questions -->
+        <div id="step2" class="step">
+            <h2>Step 2: Generating Questions</h2>
+            <div id="generationStatus">Generating questions from PDF... This may take a minute.</div>
+            <div id="generatedQuestions" class="hidden">
+                <h3>Generated Questions</h3>
+                <div class="question-levels">
+                    <div class="level">
+                        <h4>Level 1 Questions</h4>
+                        <div id="level1Questions" class="question-list"></div>
+                    </div>
+                    <div class="level">
+                        <h4>Level 2 Questions</h4>
+                        <div id="level2Questions" class="question-list"></div>
+                    </div>
+                    <div class="level">
+                        <h4>Level 3 Questions</h4>
+                        <div id="level3Questions" class="question-list"></div>
+                    </div>
+                </div>
+                <button id="customizeBtn">Customize Questions</button>
+            </div>
+        </div>
+        
+        <!-- Step 3: Customize Questions -->
+        <div id="step3" class="step">
+            <h2>Step 3: Customize Questions</h2>
+            <p>Select at least 30 questions total (any combination of levels)</p>
+            <div class="question-levels">
+                <div class="level">
+                    <h4>Level 1 Questions (Selected: <span id="level1Count">0</span>/20)</h4>
+                    <div id="customLevel1" class="question-list customize-list"></div>
+                </div>
+                <div class="level">
+                    <h4>Level 2 Questions (Selected: <span id="level2Count">0</span>/20)</h4>
+                    <div id="customLevel2" class="question-list customize-list"></div>
+                </div>
+                <div class="level">
+                    <h4>Level 3 Questions (Selected: <span id="level3Count">0</span>/20)</h4>
+                    <div id="customLevel3" class="question-list customize-list"></div>
+                </div>
+            </div>
+            <div id="totalCount">Total selected: 0</div>
+            <button id="saveCustomizationBtn" disabled>Save Selection and Continue</button>
+        </div>
+        
+        <!-- Step 4: Setup Players -->
+        <div id="step4" class="step">
+            <h2>Step 4: Setup Players</h2>
+            <div id="playerSetup">
+                <div class="player-input">
+                    <label>Number of Players:</label>
+                    <select id="numPlayers">
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                </div>
+                <div id="playerNames"></div>
+                <button id="startGameBtn">Start Game</button>
+            </div>
+        </div>
+        
+        <!-- Step 5: Game Board -->
+        <div id="step5" class="step">
+            <h2>Flying Chess Game</h2>
+            <div id="gameInfo">
+                <div id="currentPlayer"></div>
+                <div id="diceResult"></div>
+                <button id="rollDiceBtn">Roll Dice</button>
+            </div>
+            
+            <div id="gameBoard"></div>
+            
+            <div id="questionModal" class="modal hidden">
+                <div class="modal-content">
+                    <h3 id="questionText"></h3>
+                    <div id="questionOptions"></div>
+                    <div id="targetPlayerSelection" class="hidden">
+                        <p>You answered correctly! Choose an action:</p>
+                        <button id="moveForwardBtn">Move Forward <span id="xSpaces"></span> spaces</button>
+                        <div>
+                            <label>Or move another player back:</label>
+                            <select id="targetPlayerSelect"></select>
+                            <button id="movePlayerBackBtn">Move Player Back</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="gameResult" class="hidden">
+                <h3>Game Over!</h3>
+                <div id="winnerMessage"></div>
+                <button id="playAgainBtn">Play Again</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="/static/js/script.js"></script>
+</body>
+</html>
